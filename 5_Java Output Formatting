@@ -3,7 +3,6 @@ import java.util.*;
 
 public class Solution {
 
-
     public static void main(String[] args) {
             //created by Sivapriya Sridhar
             Scanner sc=new Scanner(System.in);
