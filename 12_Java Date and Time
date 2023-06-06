@@ -1,0 +1,84 @@
+import java.io.*;
+import java.math.*;
+import java.security.*;
+import java.text.*;
+import java.util.*;
+import java.util.concurrent.*;
+import java.util.regex.*;
+
+class Result {
+
+    /*
+     * Complete the 'findDay' function below.
+     *
+     * The function is expected to return a STRING.
+     * The function accepts following parameters:
+     *  1. INTEGER month
+     *  2. INTEGER day
+     *  3. INTEGER year
+     */
+
+    public static String findDay(int month, int day, int year) {
+        Calendar calendar = Calendar.getInstance();
+        //Set Month as month-1 , since the index starts from 0
+        calendar.set(year, month-1, day);
+        // the DAY_OF_WEEK return in integer value
+        int outputVal = calendar.get(Calendar.DAY_OF_WEEK);
+        //getDay method is user defined gives the day in string when int value is passed. 
+         return getDay(outputVal).toUpperCase();   
+    
+
+    }
+
+
+public static String getDay(int outputVal){
+    String dayOut = "";
+    switch(outputVal){
+    case 1:
+        dayOut="Sunday";
+        break;
+    case 2:
+        dayOut="Monday";
+        break;
+    case 3:
+        dayOut="Tuesday";
+        break;
+    case 4:
+        dayOut="Wednesday";
+        break;
+    case 5:
+        dayOut="Thursday";
+        break;
+    case 6:
+        dayOut="Friday";
+        break;
+    case 7:
+        dayOut="Saturday";
+        break;
+    }
+    return dayOut;
+}
+}
+
+public class Solution {
+    public static void main(String[] args) throws IOException {
+        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
+        BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(System.getenv("OUTPUT_PATH")));
+
+        String[] firstMultipleInput = bufferedReader.readLine().replaceAll("\\s+$", "").split(" ");
+
+        int month = Integer.parseInt(firstMultipleInput[0]);
+
+        int day = Integer.parseInt(firstMultipleInput[1]);
+
+        int year = Integer.parseInt(firstMultipleInput[2]);
+
+        String res = Result.findDay(month, day, year);
+
+        bufferedWriter.write(res);
+        bufferedWriter.newLine();
+
+        bufferedReader.close();
+        bufferedWriter.close();
+    }
+}
