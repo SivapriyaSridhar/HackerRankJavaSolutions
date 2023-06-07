@@ -1,0 +1,44 @@
+import java.util.*;
+import java.text.*;
+
+public class Solution {
+     
+    
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        double payment = scanner.nextDouble();
+        scanner.close();     
+      
+        
+        // Write your code here.
+        System.out.println("US: "+printCurrency("Dollars", payment));
+        System.out.println("India: "+printCurrency("IND", payment) );
+        System.out.println("China: "+printCurrency("Yuan", payment));
+        System.out.println("France: "+printCurrency("Euros", payment));
+    }
+    
+    public static String printCurrency(String outputCurrency, double payment) {
+    Locale locale;
+        
+    if (outputCurrency.equals("Yuan")) {
+        //locale = new Locale("zh", "CN");
+        locale = Locale.CHINA;
+    } else if(outputCurrency.equals("Euros")) {
+        //locale = new Locale("de", "DE");
+        locale = Locale.FRANCE;
+    } else if (outputCurrency.equals("Dollars")) {
+        //locale = new Locale("en", "US");
+        locale = Locale.US;
+    } else if (outputCurrency.equals("IND")) {
+        locale = new Locale("en", "IN");
+    }else{
+        locale = new Locale("en", "IN");
+    }
+        
+   // Currency currency = Currency.getInstance(locale);
+    String output = NumberFormat.getCurrencyInstance(locale).format(payment);
+    return output;
+
+    }
+}
+
